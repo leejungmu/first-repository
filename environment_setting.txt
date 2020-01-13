@@ -1,0 +1,20 @@
+아나콘다 업데이트
+> conda update --all
+
+R 아나콘다 설치
+> conda install -c r r-essentials
+
+Jupyter lab과 git 연동
+> conda install -c conda-forge jupyterlab-git 
+
+Git 사용법
+(git terminal)
+> git add 파일명
+> git commit -m "코멘트"
+> git push origin master
+
+
+※ git clone ▶▶ 로컬저장소에 원격저장소 생성
+> git pull ▶▶ fetch(다운로드만 하고 저장 X) + merge
+> git pull --rebase ▶▶ fetch + rebase
+                          히스토리가 엇갈려 애매모호한 상황에서 작업을 원격저장소의 최신 상태와 합치기
