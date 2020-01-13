@@ -18,3 +18,6 @@ Git 사용법
 > git pull ▶▶ fetch(다운로드만 하고 저장 X) + merge
 > git pull --rebase ▶▶ fetch + rebase
                           히스토리가 엇갈려 애매모호한 상황에서 작업을 원격저장소의 최신 상태와 합치기
+                          
+＊ git warning: LF will be replaced by CRLF
+→ > git config --global core.autocrlf true 입력
