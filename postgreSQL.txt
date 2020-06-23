@@ -1,7 +1,3 @@
-superuser password : 10co2pt
-port : 5432
-
-
 >psql -U postgres -d postgres
 
 
@@ -20,7 +16,7 @@ SELECT * FROM dust_20090104;
 
 ----------------------------------openAPI 연결-----------------------------------------
 import psycopg2
-conn_string = "host='localhost' dbname = 'seoul_dust' user= 'postgres' password='10co2pt' port = '5432'"
+conn_string = "host='localhost' dbname = 'seoul_dust' user= 'postgres' password='****' port = '5432'"
 conn = psycopg2.connect(conn_string)
 cur = conn.cursor()
 
