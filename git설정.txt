@@ -1,8 +1,4 @@
-name: lee.jungmu
-email: lee.jungmu.email@gamil.com
-password: 10co2ptJ
-
-git ±ÇÇÑ¼³Á¤
+git ê¶Œí•œì„¤ì •
 $ git config --global user.name "lee.jungmu"
 $ git config --global user.email lee.jungmu.email@gmail.com
 $ git config --list
@@ -15,17 +11,17 @@ git terminal
 > git log
 
 
-¡Ø·ÎÄÃÀúÀå¼Ò¿Í ¿ø°İÀúÀå¼Ò ¿¬°á
-// Github ¿ø°İÀúÀå¼Ò¿Í ¿¬°áÇÑ´Ù.
-git remote add origin [ÀÚ½ÅÀÇ Github ¿ø°İÀúÀå¼Ò ÁÖ¼Ò] 
-// ¿¬°áµÈ ¿ø°İÀúÀå¼Ò È®ÀÎÇÑ´Ù.
+â€»ë¡œì»¬ì €ì¥ì†Œì™€ ì›ê²©ì €ì¥ì†Œ ì—°ê²°
+// Github ì›ê²©ì €ì¥ì†Œì™€ ì—°ê²°í•œë‹¤.
+git remote add origin [ìì‹ ì˜ Github ì›ê²©ì €ì¥ì†Œ ì£¼ì†Œ] 
+// ì—°ê²°ëœ ì›ê²©ì €ì¥ì†Œ í™•ì¸í•œë‹¤.
 git remote -v
 
 
-¡Ø git clone ¢º¢º·ÎÄÃÀúÀå¼Ò¿¡ ¿ø°İÀúÀå¼Ò »ı¼º 
-> git pull ¢º¢ºfetch(´Ù¿î·Îµå¸¸ ÇÏ°í ÀúÀå X) + merge
-> git pull --rebase ¢º¢ºfetch + rebase 
-                               È÷½ºÅä¸®°¡ ¾ù°¥·Á ¾Ö¸Å¸ğÈ£ÇÑ »óÈ²¿¡¼­ ÀÛ¾÷À» ¿ø°İÀúÀå¼ÒÀÇ ÃÖ½Å »óÅÂ¿Í ÇÕÄ¡±â
+â€» git clone â–¶â–¶ë¡œì»¬ì €ì¥ì†Œì— ì›ê²©ì €ì¥ì†Œ ìƒì„± 
+> git pull â–¶â–¶fetch(ë‹¤ìš´ë¡œë“œë§Œ í•˜ê³  ì €ì¥ X) + merge
+> git pull --rebase â–¶â–¶fetch + rebase 
+                               íˆìŠ¤í† ë¦¬ê°€ ì—‡ê°ˆë ¤ ì• ë§¤ëª¨í˜¸í•œ ìƒí™©ì—ì„œ ì‘ì—…ì„ ì›ê²©ì €ì¥ì†Œì˜ ìµœì‹  ìƒíƒœì™€ í•©ì¹˜ê¸°
 
-£ªgit warning: LF will be replaced by CRLF
-¡æ git config --global core.autocrlf true
+ï¼Šgit warning: LF will be replaced by CRLF
+â†’ git config --global core.autocrlf true
