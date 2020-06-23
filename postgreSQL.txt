@@ -1,0 +1,89 @@
+superuser password : 10co2pt
+port : 5432
+
+
+>psql -U postgres -d postgres
+
+
+
+CREATE TABLE dust_20090104 (MSRDT real, MSRSTE_NIM text, NO2 real, O3 real, CO real, SO2 real, PM10 real, PM25 real);
+
+COPY dust_20090104 FROM 'D:/DataScience/first-repository/raw_data/dust_20090104.csv' DELIMITER ',' CSV HEADER;
+
+SELECT * FROM dust_20090104;
+
+\d
+\l
+\c ▷ 현재 데이터베이스 바꾸기
+
+
+
+----------------------------------openAPI 연결-----------------------------------------
+import psycopg2
+conn_string = "host='localhost' dbname = 'seoul_dust' user= 'postgres' password='10co2pt' port = '5432'"
+conn = psycopg2.connect(conn_string)
+cur = conn.cursor()
+
+import requests
+import pandas as pd
+import os
+import datetime as dt
+import matplotlib.pyplot as plt
+import urllib3
+
+from time import sleep
+
+def call_api(api_name, start_date, end_date, dir_name):
+
+    # API 키는 공개하기 힘든 점 양해 바랍니다.
+
+    api_key = open("./api_key/SEOUL_api_key.txt").readlines()[0].strip()
+
+    url_format = 'http://openAPI.seoul.go.kr:8088/{api_key}/json/{api_name}/1/{end_index}/{date}'
+
+    headers = {'content-type': 'application/json;charset=utf-8'}
+
+
+
+    for date in pd.date_range(start_date, end_date).strftime("%Y%m%d"):
+
+        # 최초 1회 Call은 해당 일자의 데이터 수를 확인한다.
+
+        url = url_format.format(api_name=api_name, api_key=api_key, end_index=1, date=date)
+
+        response = requests.get(url, headers=headers)
+
+        end_index = response.json()[api_name]["list_total_count"]
+
+        print("Max Count(%s): %s" % (date, end_index))
+
+
+
+        # 해당 일자의 모든 데이터를 불러온다.
+
+        url = url_format.format(api_name=api_name, api_key=api_key, end_index=end_index, date=date)
+
+        response = requests.get(url, headers=headers)
+
+        result = pd.DataFrame(response.json()[api_name]["row"])
+
+        cur.execute("CREATE TABLE dust_%s (MSRDT real, MSRSTE_NIM text, NO2 real, O3 real, CO real, SO2 real, PM10 real, PM25 real);" % (date))
+        conn.commit()
+        
+        result.to_csv("./raw_data/dust_%s.csv" % (date), index=False, encoding="UTF-8") #"EUC-KR")
+        
+        cur.execute("COPY dust_%s FROM 'D:/DataScience/first-repository/raw_data/dust_%s.csv' DELIMITER ',' CSV HEADER;" % (date, date))
+        
+
+
+
+        # API 부하 관리를 위해 0.5초 정도 쉬어 줍시다 (찡긋)
+
+        sleep(0.5)
+
+
+call_api("TimeAverageAirQuality", "2010-01-01", "2020-05-31", "dust")
+--------------------------------openAPI 연결 끝---------------------------------------
+
+
+
