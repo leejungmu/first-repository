@@ -54,6 +54,7 @@ git remote -v
 //브랜치 병합하기
 > git checkout master(병합될 브랜치)
 > git merge 병합할_브랜치(편집 실행한 브랜치)
+> git push origin master
 
 //브랜치 삭제하기
 > git branch -d 브랜치이름
