@@ -9,9 +9,28 @@ Jupyter lab과 git 연동
 
 Git 사용법
 (git terminal)
+> git status
 > git add 파일명
 > git commit -m "코멘트"
 > git push origin master
+> git log
+
+github 원격저장소에 폴더 올리기
+> git add -f 폴더이름/
+> git commit -m "comment"
+> git push origin master
+
+github 원격저장소 파일 삭제
+> git rm --cached -r 파일이름
+> git commit -m "remove"
+> git push origin master
+
+
+※로컬저장소와 원격저장소 연결
+// Github 원격저장소와 연결한다.
+git remote add origin [자신의 Github 원격저장소 주소] 
+// 연결된 원격저장소 확인한다.
+git remote -v
 
 
 ※ git clone ▶▶ 로컬저장소에 원격저장소 생성
