@@ -40,3 +40,20 @@ git remote -v
                           
 ＊ git warning: LF will be replaced by CRLF
 → > git config --global core.autocrlf true 입력
+
+
+※ branch
+//브랜치 만들기
+> git branch 브랜치이름
+> git branch
+
+//브랜치 전환하기
+> git checkout 브랜치이름
+
+//브랜치 병합하기
+> git checkout master(병합될 브랜치)
+> git merge 병합할 브랜치(편집 실행한 브랜치)
+
+//브랜치 삭제하기
+> git branch -d 브랜치이름
+> git branch
