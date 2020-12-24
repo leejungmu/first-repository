@@ -16,7 +16,7 @@ names(data) <- c('word_freq_make', 'word_freq_address', 'word_freq_all', 'word_f
                  'word_freq_technology', 'word_freq_1999', 'word_freq_parts', 
                  'word_freq_pm', 'word_freq_direct', 'word_freq_cs', 'word_freq_meeting',
                  'word_freq_original', 'word_freq_project', 'word_freq_re',
-                 'word_freq_edu', 'word_freq_table', 'word_freq_conference', 
+                 'word_freq_edu', 'word_freq_table', 'word_freq_conference',
                  'char_freq_;', 'char_freq_(', 'char_freq_[', 'char_freq_!', 
                  'char_freq_$', 'char_freq_#', 'capital_run_length_average',
                  'capital_run_length_longest', 'capital_run_length_total', 'class'
@@ -50,3 +50,28 @@ pairs(data %>% dplyr::select(48:57, 58) %>%
       lower.panel=function(x,y){ points(x,y); abline(0,1,col='red')},
       upper.panel=panel.cor)
 
+tmp <- as.data.frame(cor(data[,-58], as.numeric(data$class)))
+tmp <- tmp %>% rename(cor=V1)
+tmp$var <- rownames(tmp)
+tmp %>%
+  ggplot(aes(reorder(var, cor), cor)) +
+  geom_point() +
+  coord_flip()
+
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+glimpse(data)
+p1 <- data %>% ggplot(aes(class)) + geom_bar()
+p2 <- data %>% ggplot(aes(class, `char_freq_$`)) +
+  geom_jitter(col='gray') +
+  geom_boxplot(alpha=.5) +
+  scale_y_sqrt()
+p3 <- data %>% ggplot(aes(`char_freq_$`, group=class, fill=class)) +
+  geom_density(alpha=.5) +
+  scale_x_sqrt() + scale_y_sqrt()
+p4 <- data %>% ggplot(aes(class, capital_run_length_longest)) +
+  geom_jitter(col='gray') +
+  geom_boxplot(alpha=.5) +
+  scale_y_log10()
+grid.arrange(p1, p2, p3, p4, ncol=2)
