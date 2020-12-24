@@ -1,0 +1,3 @@
+ls()
+rm(list = ls())
+
